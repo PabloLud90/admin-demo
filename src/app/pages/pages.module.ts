@@ -17,6 +17,7 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 //temporal
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficaDonaComponent } from '../components/graficaDona/graficaDona.component';
+import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 
 
 
@@ -27,7 +28,8 @@ import { GraficaDonaComponent } from '../components/graficaDona/graficaDona.comp
         ProgressComponent,
         Graficas1Component,
         IncrementadorComponent,
-        GraficaDonaComponent
+        GraficaDonaComponent,
+        AccoutSettingsComponent
 
     ],
     exports:[
