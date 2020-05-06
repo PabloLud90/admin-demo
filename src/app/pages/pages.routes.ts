@@ -8,11 +8,13 @@ import { GraficaDonaComponent } from '../components/graficaDona/graficaDona.comp
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { LoginGuardGuard } from '../services/service.index';
 
 const appRoutes: Routes=[
     {
         path: '',
         component: PagesComponent,
+        canActivate:[LoginGuardGuard],
         children:[
             {
             path: '',
