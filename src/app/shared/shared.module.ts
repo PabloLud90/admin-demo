@@ -3,7 +3,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
+//PIPES
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -16,7 +17,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     imports:[
         RouterModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        PipesModule
     ],
 
     declarations:[

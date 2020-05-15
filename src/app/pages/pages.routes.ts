@@ -9,6 +9,7 @@ import { AccoutSettingsComponent } from './accout-settings/accout-settings.compo
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/service.index';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes=[
     {
@@ -46,6 +47,11 @@ const appRoutes: Routes=[
                 path: 'rxjs',
                component: RxjsComponent,
                data:{titulo: 'RxJs'}
+            },
+            {
+                path:'perfil',
+                component: ProfileComponent,
+                data:{titulo: 'Perfil del Tema'}
             },
            
             {
