@@ -11,3 +11,30 @@
 .w150{
     width:  150px;;
 }
+
+/*Tamanio  */
+.w70{
+    width: 70px;
+}
+
+.img-50{
+    width: 50px;
+}
+
+
+/*Ocultar Modal  */
+.oculto{
+    display: none;
+
+}
+
+/*Configuracion Modal  */
+.fondo-negro{
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+}

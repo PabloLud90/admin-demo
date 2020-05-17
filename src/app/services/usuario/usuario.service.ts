@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.models';
 import { URL_SERVICES } from '../../config/config';
 import { map } from 'rxjs/operators';
-import swal from 'sweetalert';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+//import swal from 'sweetalert';
 
 
 @Injectable({
@@ -141,6 +141,53 @@ export class UsuarioService {
           console.log(res);
 
          });
+   }
+
+   cargarUsuarios(desde: number=0){
+     let url= URL_SERVICES + '/usuario?desde=' + desde;
+     return this.http.get(url);
+   }
+
+   //Buscar usuario
+   buscarUsuario(termino: string){
+     let url= URL_SERVICES + '/busqueda/coleccion/usuarios/' + termino;
+
+     return this.http.get(url)
+            .pipe(map((res: any)=> res.usuarios));
+   }
+
+   borrarUsuario(id: string){
+     let url= URL_SERVICES + '/usuario/' + id;
+     url += '?token=' + this.token;
+
+     return this.http.delete(url)
+         .pipe(map(res=>{
+           swal('Usuario borrado', 'El usuario se elimino correctamente', 'success');
+           return true;
+         }));
+      
 
    }
+
+  //actualizarRole
+   actualizarRol(usuario: Usuario){
+
+    let url= URL_SERVICES + '/usuario/' + usuario._id;
+    url += '?token=' + this.token;
+ 
+    console.log(url);
+ 
+    return this.http.put(url, usuario)
+        .pipe(map((res:any)=>{
+
+          if(usuario._id === this.usuario._id){
+
+            this.guardarStorage(res.usuario._id, this.token, res.usuario);
+
+          }
+ 
+         swal('Usuario Actualizado', usuario.nombre, 'success');
+        return true;
+        }));
+    }
 }

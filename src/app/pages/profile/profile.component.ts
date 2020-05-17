@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
     let urlImagenTemp= reader.readAsDataURL(archivo); // creamos temporal para dar una vista previa de la img
 
     reader.onloadend = ()=> {  
-      console.log(reader.result) //obtien imagen en base 64
+     // console.log(reader.result) //obtien imagen en base 64
       this.imagenTemporal = Object(reader.result);
     
     }
