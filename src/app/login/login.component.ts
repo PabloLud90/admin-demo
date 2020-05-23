@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.googleInit();
 
     this.email= localStorage.getItem('email') || '';
-    if(this.email.length >1){
+    if(this.email.length > 1){
       this.recuerdame= true;
     }
   }

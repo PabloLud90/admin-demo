@@ -5,7 +5,7 @@ import { URL_SERVICES } from '../../config/config';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
-//import swal from 'sweetalert';
+import swal from 'sweetalert';
 
 
 @Injectable({
@@ -17,12 +17,12 @@ export class UsuarioService {
   
 
   constructor(public http: HttpClient, public router: Router, public subirArchivoService: SubirArchivoService){
-    this.cargarStorage();
+      this.cargarStorage();
    }
 
    //Verificar si esta logeado usar token ===> proteger las rutas
    estaLogeado(){
-     return(this.token.length>5) ? true: false;
+     return(this.token.length > 5) ? true : false;
 
    }
 
@@ -30,6 +30,7 @@ export class UsuarioService {
      if(localStorage.getItem('token')){
        this.token= localStorage.getItem('token');
        this.usuario= JSON.parse(localStorage.getItem('usuario'));
+       console.log('cargando token', this.token);
      }else{
        this.token= '';
        this.usuario= null;
@@ -38,9 +39,9 @@ export class UsuarioService {
 
    //Login usuario con Google (token)
    guardarStorage(id: string, token: string, usuario:Usuario){
-    localStorage.setItem("id ==>", id);
-    localStorage.setItem("token ==>", token);
-    localStorage.setItem("usuario ==>", JSON.stringify(usuario)); 
+    localStorage.setItem('id', id);
+    localStorage.setItem('token', token);
+    localStorage.setItem('usuario', JSON.stringify(usuario)); 
 
     this.usuario= usuario;
     this.token= token;
@@ -101,12 +102,9 @@ export class UsuarioService {
      //crear alerta de 
      return this.http.post(url, usuario)
        .pipe(map((res: any)=>{
+         swal('Usuario Creado', usuario.email, 'success');
          return JSON.stringify(res.usuario);
-       }))
-    //  ,map((res: any) =>{
-        swal('Usuario Creado', usuario.email, 'success');
-    //   return res.usuario;
-    // })
+       }));
    }
 
    //Actualizar Usuario

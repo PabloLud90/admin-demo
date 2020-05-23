@@ -21,18 +21,19 @@ export class UsuariosComponent implements OnInit {
   //controlar la nimacion cargando
   cargando: boolean= true;
 
-  constructor(public usuarioService: UsuarioService, public modalUploadSrvice: ModalUploadService) { }
+  constructor(public usuarioService: UsuarioService, public modalUploadService: ModalUploadService) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
 
-    this.modalUploadSrvice.notificacion
+    //para refrescar la pagina cuando se sube la imagen
+    this.modalUploadService.notificacion
         .subscribe(res => this.cargarUsuarios());
   }
 
-  //imagen de usuario component 
+  //imagen de usuario component hacerla como boton
   mostrarModal(id: string){
-    this.modalUploadSrvice.mostrarModal('usuarios', id);
+    this.modalUploadService.mostrarModal('usuarios', id);
 
   }
 
@@ -81,6 +82,7 @@ export class UsuariosComponent implements OnInit {
           this.cargando=false;
         })
   }
+
 
   borrarUsuario(usuario: Usuario){
     if (usuario._id === this.usuarioService.usuario._id){
