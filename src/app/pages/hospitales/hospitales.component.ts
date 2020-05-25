@@ -16,20 +16,15 @@ export class HospitalesComponent implements OnInit {
 
   hospitales: Hospital[]= [];   //Esto es un arreglo de hospitales
 
+
+  //BUSQUEDA PAGINACION 
   desde: number=0;
 
+  //TOTAL DE REGISTROS
   totalRegistros: number= 0;
 
   //controlar la nimacion cargando
   cargando: boolean= true;
-
-  //MODAL
-  public tipo: string;
-  public id: string;
-
-  public oculto: string='oculto';
-
-  //public notificacion= new EventEmitter<any>;
 
   constructor(public hospitalService: HospitalService, public modalUploadService: ModalUploadService) { }
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { URL_SERVICES } from 'src/app/config/config';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 import swal from 'sweetalert';
 import { map } from 'rxjs/operators';
 import { Hospital } from 'src/app/models/hospital.models';
@@ -21,9 +20,14 @@ export class HospitalService {
               public router: Router, 
              ) { }
 
-  
-  //otra forma de obtener los hospitales sin paginacion
-  cargarHospitals(){
+  //CARGAR HOSPITALES (OBTENER CON PAGINACION)
+  cargarHospitales(desde: number=0){
+    let url= URL_SERVICES + '/hospital?desde=' + desde;
+    return this.http.get(url)
+  }
+
+   //otra forma de obtener los hospitales sin paginacion
+   cargarHospitals(){
     let url= URL_SERVICES + '/hospital';
 
     return this.http.get(url)
@@ -32,15 +36,7 @@ export class HospitalService {
             return res.hospital;
 
           }))
-
   }
-
-  //CARGAR HOSPITALES (OBTENER CON PAGINACION)
-  cargarHospitales(desde: number=0){
-    let url= URL_SERVICES + '/hospital?desde=' + desde;
-    return this.http.get(url)
-  }
-
 
   //OBTENER UN HOSPITAL
   obtenerHospital(id: string){
@@ -74,19 +70,6 @@ export class HospitalService {
             swal('Hospital actualizado', hospital.nombre,'success')
             return res.hospital
           }));
-
-
-  }
-
-// BORRAR HOSPITAL
-  borrarHospital(id: string){
-    let url= URL_SERVICES + '/hospital/' + id;
-    url += '?token=' + this.usuarioService.token;
-
-    return this.http.delete(url)
-          .pipe(map(res =>{
-            swal('Hospital borrado','El hospital se borro correctamente','success');
-          }))
   }
 
   //BUSCAR HOSPITAL
@@ -95,6 +78,17 @@ export class HospitalService {
 
     return this.http.get(url)
         .pipe(map((res: any) => res.hospitales));
+  }
+
+  // ====> BORRAR HOSPITAL
+  borrarHospital(id: string){
+    let url= URL_SERVICES + '/hospital/' + id;
+    url += '?token=' + this.usuarioService.token;
+
+    return this.http.delete(url)
+          .pipe(map(res =>{
+            swal('Hospital borrado','El hospital se borro correctamente','success');
+          }))
   }
 
   // OTRA FORMA DE BORRAR HOSPITAL
@@ -108,7 +102,5 @@ export class HospitalService {
             swal('Hospital borrado','El hospital se borro correctamente','success')
             ));
   }
-
-
 }
 

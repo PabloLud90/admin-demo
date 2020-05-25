@@ -45,7 +45,6 @@ export class MedicoComponent implements OnInit {
 
   //ESTE METODO LO UTILIZAREMOS TANTO PARA CREAR O ACTUALIZAR UN MEDICO
   guardarMedico(f: NgForm){
-
     console.log("valid",f.valid);
     console.log("valor", f.value)
 
@@ -86,6 +85,4 @@ export class MedicoComponent implements OnInit {
     this.modalUploadService.mostrarModal('medicos', this.medico._id);
 
   }
-
-  
 }

@@ -4,16 +4,16 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
-import { GraficaDonaComponent } from '../components/graficaDona/graficaDona.component';
 import { AccoutSettingsComponent } from './accout-settings/accout-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard } from '../services/service.index';
+import { LoginGuardGuard, AdminGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const appRoutes: Routes=[
     {
@@ -57,11 +57,18 @@ const appRoutes: Routes=[
                 component: ProfileComponent,
                 data:{titulo: 'Perfil del Tema'}
             },
+            {
+                path:'busqueda/:termino',
+                component: BusquedaComponent,
+                data:{titulo: 'Buscador'}
+            },
 
             //Mantenimiento
             {
+                
                 path:'usuarios',
                 component: UsuariosComponent,
+                canActivate: [ AdminGuard ],
                 data:{titulo: 'Mantenimiento De Usuarios'}
             },
 

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Medico } from 'src/app/models/medico.models';
 import { MedicoService } from 'src/app/services/medico/medico.service';
-import { HospitalService } from 'src/app/services/hospital/hospital.service';
-import { Hospital } from 'src/app/models/hospital.models';
 
 
 @Component({
@@ -13,7 +11,6 @@ import { Hospital } from 'src/app/models/hospital.models';
 export class MedicosComponent implements OnInit {
 
   medicos: Medico[]= [];
-  hospital: Hospital;
 
   cargando: boolean= true;
 
@@ -22,13 +19,11 @@ export class MedicosComponent implements OnInit {
   desde: number= 0;
 
 
-  constructor(public medicoService: MedicoService, public hospitalService: HospitalService) { }
+  constructor(public medicoService: MedicoService) { }
 
   ngOnInit(): void {
     this.cargarMedicos();
   }
-
-
 
   cargarMedicos(){
     this.cargando= true;
@@ -58,25 +53,6 @@ export class MedicosComponent implements OnInit {
         })
   }
 
-
-  crearMedico(){
-
-
-
-  }
-
-  actualizarMedico(medico: Medico){
-
-  }
-
-  actualizarImagen(medico: Medico){
-
-  }
-
-  editarMedico(medico: Medico){
-
-  }
-
   borrarMedico(medico: Medico){
     this.medicoService.borrarMedico(medico._id)
         .subscribe(res=> {
@@ -101,5 +77,4 @@ export class MedicosComponent implements OnInit {
         this.cargarMedicos();
     
       }
-
 }

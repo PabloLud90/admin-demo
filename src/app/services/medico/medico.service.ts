@@ -17,7 +17,6 @@ export class MedicoService {
   constructor(public http: HttpClient, 
               public usuarioService: UsuarioService, 
               public hospitalService: HospitalService,
-              public router: Router
 ) { }
 
 
@@ -61,15 +60,12 @@ export class MedicoService {
           return res.medico;
 
         }))
-
   }
-
 }
 
   borrarMedico(id: string){
     let url= URL_SERVICES + '/medico/' + id;
     url += '?token=' + this.usuarioService.token
-
     return this.http.delete(url)
           .pipe(map(res => swal('Medico Borrado', 'Medico Borrado Correctamente', 'success')))
 
@@ -98,9 +94,4 @@ export class MedicoService {
         .pipe(map((res: any)=> res.medico))
 
   }
-
-
-
-
-
 }
